@@ -6,18 +6,15 @@ To solve this problem we may have 2 approaches:
 2. Where we have sufficient data for model training.
 
 ***Proposed architectural diagram***
-![openai_main.png](:/d3e5485a836341f1aff3e5f96b490fa6)
+![openai_main.png](/openai_main.png)
 
 
 ================== NOTES =======================
 ### General Introduction about GPT models
 In 2022 GPT-3.5 was released with about 175B trainable params, it can be accessed commercially using ChatGPT or professionally using openai's GPT's API, where you have to pay to gain access to run your data on an LLM and get your data back. In GPT-3.5 we access the LLM models through the prompt (where we can type something in).
 
-```Professional companies can use python to access openai's GPT-3.5 model.```
-
 GPT-4 was released in 2023, which is able to handle text, images and code. The number of params this models has, is not yet disclosed (top secret). GPT-4 model is a paid model which can be accessed using ChatGPT PLUS or its API (cost GPT-4 > GPT-3.5) for professionals.
 
-### Brief about Google's T5 and Flan T5 models.
 ### Google's approach to creating models for a specific task
 In 2022, google came up with a model based off of the transformer model called T5 (text-to-text-transfer-transformer). This model came about as a result of Google's attempt to generate a special high performance system to handle a specific task. The model had two variations. One with 3B and the other with 11B trainable parameters, which was impressive at the time.
 
@@ -31,7 +28,9 @@ As a result, if as a user, you're not satisfied with the pre-training of the alr
 
 This was how google made use of it's company secret data to gain access to the architectural intelligence of an LLM of a transformer. This made people use fine-tuning with their private data on their dedicated hardware to solve specific tasks.
 
-```Lets assume for GPT-3.5 we need about 1000GPU's on a microsoft super cluster to train a GPT-3.5 model, and for GPT-4 we need a hardware configuration of about 1K to 10K GPU's to train this model. Even if we had the access to GPT-4 through ChatGPT Plus or it's API we are not given any information about what happens in this model. It is a black box. Also, GPT-4 as of right now cannot be fined-tuned for a specific task because it has been overly pre-trained.```
+```
+Lets assume for GPT-3.5 we need about 1000GPU's on a microsoft super cluster to train a GPT-3.5 model, and for GPT-4 we need a hardware configuration of about 1K to 10K GPU's to train this model. Even if we had the access to GPT-4 through ChatGPT Plus or it's API we are not given any information about what happens in this model. It is a black box. Also, GPT-4 as of right now cannot be fined-tuned for a specific task because it has been overly pre-trained.
+```
 
 ### Solution to GPT-4's inability to perform Fine Tuning
 
@@ -61,8 +60,10 @@ Now for our training if we used 50K training dataset, which is the right amount 
 
 This is the process how you now access.... you have some data (secret) give an instruction to GPT-4 to create thousands of similar instructions, because we need huge training data to feed to the smallest LLama model to develop a system intelligence of an LLM and that was how ALPACA was created.
 
-``Process:
-Sample of initial data -> generate syntethic data from GPT-4 -> feed to smallest LLama model.``
+```
+Process:
+Sample of initial data -> generate syntethic data from GPT-4 -> feed to smallest LLama model.
+```
 
 **NB: This approach brought about the existence of many of the models we see today, such as: ViCUNA, GPT-4ALL, e.t.c***
 
@@ -73,10 +74,11 @@ To fine tune a LLama model if you don't have enough money for an expensive infra
 2.  Classical Fine Tuning (FT) - Used when you have the money to rent the infrastructure (supercomputers) needed. Here all the weights are trainable (100% of weight tensors: 8x H100).
 3.  Instruction Fine Tuning - (Complex Data): Used when there's sufficient data, and our task is to obtain patterns from this complex data. 
 
-```NB: Alapaca used Classical Fine Tuning after generating self-instruct data using GPT-4```
+```
+NB: Alapaca used Classical Fine Tuning after generating self-instruct data using GPT-4
+```
 
 ### Solution to the use case where there's sufficient data to train a model
-======  Main points I think =======
 If you have enough data in your company you don't need go to for the synthetic data generation approach. You can train your model using the .Instruction Fine Tuning approach, designed to learn complex patterns from our dataset.
 
 Assuming you have your huge company secret data say: Quantum chemistry, Quantum Physics and Pharmacology etc, that we do not want to put on the internet, and our goal is to find new medications or  whatever you're researching for, you can combine all the data from the 3 fields together e.g 1k research papers on all three fields. To find common patterns which no human has discovered, we feed all these data and use the Instruction Fine Tuning which approach used for complex data set to train either the medium, large or XL LLama model.
@@ -85,7 +87,9 @@ We don't need the huge size of internet data which was used to train the GPT-4 m
 
 Lastly, Alpaca paid $600 for computer infrastucture, to generate the data, the paid mircosoft $500 and then to run it on a supercomputer the paid only $100. Therefore, the generation of data in value of high quality data, the data was 5 times more valueable to generate than to run the operation on the supercomputer.
 
-```We can substitute LLama (ALPACA) for Flan-T5 or DOLLY 2 since the LLama model is only avialable for research purposes and its weights are secret.```
+```
+We can substitute LLama (ALPACA) for Flan-T5 or DOLLY 2 since the LLama model is only avialable for research purposes and its weights are secret.
+```
 
 ### Brief Intro on DOLLY 2
 DOLLY 2 is the first open source instruction-following Pythia LLM, fine-tuned on DataBricks human-generated instruction dataset. It has 12B parameters trained on 15k in-house data and it is also available for research and commercial use.
